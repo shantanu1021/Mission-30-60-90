@@ -1,4 +1,9 @@
 {% extends "mission/base.html" %}
 {% block content %}
-    <button type="button" class="btn btn-secondary">New Mission</button>
+    {% if user.is_authenticated %}
+        <button type="button" class="btn btn-secondary">New Mission</button>          
+    {% else %}
+        <h2>Wecome to the place where you grow...</h2>  
+    {% endif %}
+               
 {% endblock content %} 
