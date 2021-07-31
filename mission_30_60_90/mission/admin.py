@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Missions, Status
 
-# Register your models here.
+admin.site.register(Missions)
+admin.site.register(Status)
+
