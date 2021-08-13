@@ -10,13 +10,13 @@ class Missions(models.Model):
     start_date = models.DateField(default=date.today)
     aspirant = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    '''
+    
     def __str__(self):
-        return self.title
-
+        return self.mission_name
+    
     def get_absolute_url(self):
-        return reverse('post-detail',kwargs={'pk':self.pk})
-    '''       
+        return reverse('mission-home')
+          
 
 class Status(models.Model):
 
@@ -25,3 +25,5 @@ class Status(models.Model):
     is_done = models.BooleanField(default=False)
     remarks = models.TextField()
     
+    def __str__(self):
+        return f'{self.mission_id} day {self.day_no}'
