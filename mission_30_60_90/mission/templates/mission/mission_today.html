@@ -1,0 +1,8 @@
+{% extends "mission/base.html" %}
+{% block content %}
+    {% for statu in status %}
+        <h2>{{ statu.mission_id }}</h2>
+        <p>{{ statu.day_no }}</p>
+        <p>{{ statu.remarks }}</p>
+    {% endfor %}    
+{% endblock content %}  

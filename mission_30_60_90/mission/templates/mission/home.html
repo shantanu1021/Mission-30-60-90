@@ -1,7 +1,9 @@
 {% extends "mission/base.html" %}
 {% block content %}
     {% if user.is_authenticated %}
-        <a class="nav-item nav-link" href="{% url 'mission-create' %}">New Mission</a>          
+        <a class="nav-item nav-link" href="{% url 'mission-create' %}">New Mission</a>
+        <a class="nav-item nav-link" href="{% url 'user-missions' user.username %}">Your missions</a>
+        
     {% else %}
         <h2>Wecome to the place where you grow...</h2>  
     {% endif %}

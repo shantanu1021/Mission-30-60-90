@@ -27,3 +27,4 @@ class Status(models.Model):
     
     def __str__(self):
         return f'{self.mission_id} day {self.day_no}'
+

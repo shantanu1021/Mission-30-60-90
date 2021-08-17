@@ -1,0 +1,16 @@
+{% extends "mission/base.html" %}
+{% block content %}
+    <h1 class="mb-3">Your missions</h1>
+    {% for mission in missions %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <small class="text-muted">{{ mission.start_date|date:"F d,Y" }}</small>
+            </div>
+            <h2><a href = "{% url 'mission-today' mission.mission_name %}">{{ mission.mission_name }}</a></h2>
+            <p class="article-content">{{ mission.no_of_days }} days</p>
+          </div>
+        </article>
+    {% endfor %}
+    
+{% endblock content %} 
