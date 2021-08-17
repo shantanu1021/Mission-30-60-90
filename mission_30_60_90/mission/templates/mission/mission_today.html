@@ -1,8 +1,21 @@
 {% extends "mission/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-    {% for statu in status %}
-        <h2>{{ statu.mission_id }}</h2>
-        <p>{{ statu.day_no }}</p>
-        <p>{{ statu.remarks }}</p>
-    {% endfor %}    
+    {% if status.is_done %}
+        <h1>{{ status.mission_id }}</h1>
+        <h2>Today's Status is already posted!</h2>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ status.mission_id }} day no. {{ status.day_no }} </legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Mark as done</button>
+            </div>
+
+        </form>
+    {% endif %}
+      
 {% endblock content %}  

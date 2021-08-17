@@ -1,10 +1,12 @@
 from django.db.models import fields
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import get_list_or_404, get_object_or_404, render,redirect
 from django.views.generic import CreateView, ListView
+from django.contrib import messages
 from .models import Missions,Status
 from datetime import date
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from .forms import StatusUpdateForm
 # Create your views here.
 def home(request):
     return render(request,'mission/home.html')
@@ -34,7 +36,22 @@ def missiontoday(request,**kwargs):
     mission = get_object_or_404(Missions,mission_name=kwargs.get('mission_name'))
     dayno = (date.today()-mission.start_date).days
     dayno+=1
-    print(dayno)
     status = Status.objects.filter(mission_id=mission.id,day_no=dayno)
-    print(len(status))
-    return render(request,'mission/mission_today.html',{'status':status})
+    status=status[0]
+    
+    if request.method == 'POST':
+        form = StatusUpdateForm(request.POST, instance=status)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Status updated')
+            return redirect('mission-home')
+    else:
+        form = StatusUpdateForm(instance=request.user)
+
+    context={
+        'status':status,
+        'form':form
+    }
+    
+    return render(request,'mission/mission_today.html',context)
