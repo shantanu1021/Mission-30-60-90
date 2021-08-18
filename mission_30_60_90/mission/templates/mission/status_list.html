@@ -1,0 +1,30 @@
+{% extends "mission/base.html" %}
+{% block content %}
+<h2>mission_name</h2>
+    {% for status in statuses %}
+        
+        <div class="media-body">
+        <h2>Day no. {{ status.day_no }}</h2>
+        {% if status.day_no < dayno %}
+            {% if status.is_done%}
+                <input type="checkbox" checked disabled>
+            {% else %}
+                <input type="checkbox" disabled>
+            {% endif %}
+            <p class="article-content" style="color:grey">{{ status.remarks }}</p>
+        {% else %}
+            {% if status.is_done%}
+                <input type="checkbox" checked disabled>
+            {% else %}
+                <input type="checkbox" disabled>
+            {% endif %}
+            <p class="article-content" style="color:navy">{{ status.remarks }}</p>
+        {% endif %}
+        
+        
+        </div>
+        
+    {% endfor %}
+    
+{% endblock content %} 
+

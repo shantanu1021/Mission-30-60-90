@@ -1,21 +1,25 @@
 {% extends "mission/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    {% if status.is_done %}
-        <h1>{{ status.mission_id }}</h1>
-        <h2>Today's Status is already posted!</h2>
+    {% if not status %}
+        <h2>Mission is over!</h2>
     {% else %}
-        <form method="post">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">{{ status.mission_id }} day no. {{ status.day_no }} </legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Mark as done</button>
-            </div>
+        {% if status.is_done %}
+            <h1>{{ status.mission_id }}</h1>
+            <h2>Today's Status is already posted!</h2>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">{{ status.mission_id }} day no. {{ status.day_no }} </legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Mark as done</button>
+                </div>
 
-        </form>
+            </form>
+        {% endif %}
     {% endif %}
-      
+    <a href="{% url 'status-report' mission_name %}">See Report</a>
 {% endblock content %}  

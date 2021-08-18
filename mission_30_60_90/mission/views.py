@@ -1,4 +1,5 @@
 from django.db.models import fields
+from django.db.models.base import Model
 from django.shortcuts import get_list_or_404, get_object_or_404, render,redirect
 from django.views.generic import CreateView, ListView
 from django.contrib import messages
@@ -31,13 +32,19 @@ class MissionListView(LoginRequiredMixin,ListView):
         user = get_object_or_404(User,username=self.kwargs.get('username'))
         return Missions.objects.filter(aspirant=user).order_by('-start_date')      
 
+
+
 def missiontoday(request,**kwargs):
     
     mission = get_object_or_404(Missions,mission_name=kwargs.get('mission_name'))
     dayno = (date.today()-mission.start_date).days
-    dayno+=1
+    dayno+=1      
     status = Status.objects.filter(mission_id=mission.id,day_no=dayno)
-    status=status[0]
+    
+    if len(status)==0:
+        pass
+    else:
+        status=status[0]
     
     if request.method == 'POST':
         form = StatusUpdateForm(request.POST, instance=status)
@@ -51,7 +58,22 @@ def missiontoday(request,**kwargs):
 
     context={
         'status':status,
-        'form':form
+        'form':form,
+        'mission_name':mission.mission_name
     }
     
     return render(request,'mission/mission_today.html',context)
+
+def statuslist(request,**kwargs):
+    
+    mission = get_object_or_404(Missions,mission_name=kwargs.get('mission_name'))   
+    statuses = Status.objects.filter(mission_id=mission.id)
+    dayno = (date.today()-mission.start_date).days
+    dayno+=1  
+    context={
+        'statuses':statuses,
+        'dayno':dayno,
+        'mission_name':mission.mission_name
+    }
+    
+    return render(request,'mission/status_list.html',context)    
