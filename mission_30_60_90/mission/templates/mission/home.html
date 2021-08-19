@@ -1,11 +1,136 @@
 {% extends "mission/base.html" %}
 {% block content %}
     {% if user.is_authenticated %}
-        <a class="nav-item nav-link" href="{% url 'mission-create' %}">New Mission</a>
-        <a class="nav-item nav-link" href="{% url 'user-missions' user.username %}">Your missions</a>
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'mission-create' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;margin-left: 80pt;"  >New Mission</a>
+            </div>
+            <div class="col">
+                <a href="{% url 'user-missions' user.username %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;margin-left: 80pt;" >Your missions</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h4>Something to boost yourselves...</h4>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    {% load static %}<img class="card-img-top" src="{% static "mission/media/uvsu.jpg" %}" alt="uvsu">
+                    <div class="card-body">
+                      <h5 class="card-title">You VS You</h5>
+                      <p class="card-text">Motivational Speech</p>
+                      <a href="https://www.youtube.com/watch?v=Fm1kxdKX5ac" class="btn btn-primary">Watch</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    {% load static %}<img class="card-img-top" src="{% static "mission/media/noprocast.jpg" %}" alt="noprocast">
+                    <div class="card-body">
+                      <h5 class="card-title">Do not procastinate</h5>
+                      <p class="card-text">The ONLY way to stop procrastinating</p>
+                      <a href="https://www.youtube.com/watch?v=4x7MkLDGnu8" class="btn btn-primary">Watch</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    {% load static %}<img class="card-img-top" src="{% static "mission/media/gap.jpg" %}"  alt="gap">
+                    <div class="card-body">
+                      <h5 class="card-title">Do plan things</h5>
+                      <p class="card-text">The gap between planning and doing</p>
+                      <a href="https://www.youtube.com/watch?v=AzW2iKd-ITM" class="btn btn-primary">Watch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <h6>If you are a fitness freak..</h6>
+        <br>
+        <div class="row" style="margin-top: 5pt;">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    {% load static %}<img class="card-img-top" src="{% static "mission/media/fitness.jpg" %}" alt="uvsu">
+                    <div class="card-body">
+                      <h5 class="card-title">DON'T QUIT</h5>
+                      <p class="card-text">Motivational Workout Speech</p>
+                      <a href="https://www.youtube.com/watch?v=Z63w5PefxTQ" class="btn btn-primary">Watch</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    {% load static %}<img class="card-img-top" src="{% static "mission/media/uoweu.jpg" %}" alt="noprocast">
+                    <div class="card-body">
+                      <h5 class="card-title">You Owe You</h5>
+                      <p class="card-text">Motivational Speech</p>
+                      <a href="https://www.youtube.com/watch?v=NHW7ywUx4pY" class="btn btn-primary">Watch</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+            </div>
+        </div>
         
     {% else %}
-        <h2>Wecome to the place where you grow...</h2>  
+        
+        <div class="container" style="margin-top: 40pt;">
+            <div class="row">
+                <div class="col">
+                    {% load static %}<img src="{% static "mission/media/calender.jpg" %}" height="400" width="700"   />
+
+                </div>
+                <div class="col">
+                    <h2>Set.Work.Achieve</h2>
+                    <ul style="margin-top: 50pt;">
+                        <li>Set a mission</li>
+                        <li style="margin-top: 15pt;">Work on it,by tracking the progress</li>
+                        <li style="margin-top: 15pt;">Acchieve it in a span of 30,60 or 90 days</li>
+                    </ul>
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;">Get Started</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container"  style="margin-top: 65pt;">
+            <div class="row">
+                <div class="col">
+                    <blockquote class="blockquote" style="margin: 25pt; margin-top: 90pt;">
+                        <p>Challenge yourself; it's the only path which leads to growth</p>
+                          <footer class="blockquote-footer">Morgan Freeman</footer>
+                    </blockquote>
+                </div>
+                <div class="col">
+                    {% load static %}<img src="{% static "mission/media/archery.jpg" %}" height="400" width="700"   />
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="container"  style="margin-top: 25pt;">
+            <div class="row">
+                <div class="col">
+                    {% load static %}<img src="{% static "mission/media/steps.jpg" %}" height="300" width="500"   />
+
+                </div>
+                <div class="col">
+                    <blockquote class="blockquote" style="margin: 25pt; margin-top: 90pt;">
+                        <p>Planning without action is futile, action without planning is fatal</p>
+                        <footer class="blockquote-footer">Cornelius Fichter</footer>
+                      </blockquote> 
+
+                </div>
+            </div>
+        </div> 
+
+        <p>Made by SMD</p>
     {% endif %}
                
 {% endblock content %} 

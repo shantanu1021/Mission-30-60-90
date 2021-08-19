@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from .views import MissionCreateView,MissionListView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns= [
     path('',views.home,name='mission-home'),
@@ -10,3 +11,4 @@ urlpatterns= [
     path('user/<str:username>',MissionListView.as_view(),name='user-missions'),
     path('about/',views.about,name='mission-about'),
 ]
+urlpatterns += staticfiles_urlpatterns()

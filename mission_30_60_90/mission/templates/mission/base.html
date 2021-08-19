@@ -20,9 +20,12 @@
 </head>
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'mission-home' %}">Mission Home</a>
+          <a class="navbar-brand" href="#">
+            {% load static %}<img src="{% static "mission/media/target.jpg" %}" height="33" width="33" alt="logo" />
+          </a>
+          <a class="navbar-brand mr-4" href="{% url 'mission-home' %}">Mission 30-60-90</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -58,9 +61,9 @@
                     </div>
                 {% endfor %}
             {% endif %}
-          {% block content %}{% endblock %}
         </div>
       </div>
+      {% block content %}{% endblock %}     
     </main>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
