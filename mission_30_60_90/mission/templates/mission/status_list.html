@@ -5,34 +5,43 @@
         <h2>{{mission_name}}</h2>
         <br>
         {% for status in statuses %}
+          <div class="row"  style="margin-top:10pt;">
+            <div class="col-md-4"><h3>Day no. {{ status.day_no }}</h3></div>
             
-            <div class="media-body">
-            <h2>Day no. {{ status.day_no }}</h2>
             {% if status.day_no < dayno %}
                 {% if status.is_done%}
-                    <button type="button" class="btn btn-success">{% load static %}<img src="{% static "mission/media/check.svg" %}" /></button>
-                    <p class="article-content" style="color:grey">{{ status.remarks }}</p>
-                {% else %}                    
-                    <button type="button" class="btn btn-danger">{% load static %}<img src="{% static "mission/media/x.svg" %}" /></button>
-                    
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-success">{% load static %}<img src="{% static "mission/media/check.svg" %}" /></button>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="article-content" style="color:rgb(51, 47, 47)">{{ status.remarks }}</p>
+                    </div>
+                {% else %}
+                    <div class="col-md-2">                    
+                        <button type="button" class="btn btn-danger">{% load static %}<img src="{% static "mission/media/x.svg" %}" /></button>
+                    </div>
                 {% endif %}
                 
             {% else %}
-                {% if status.is_done%}                   
-                    <button type="button" class="btn btn-success">{% load static %}<img src="{% static "mission/media/check.svg" %}" /></button>
-                    
-                    <p class="article-content" style="color:navy">{{ status.remarks }}</p>
-                {% else %}                  
-                    <button type="button" class="btn btn-secondary">{% load static %}<img src="{% static "mission/media/dash.svg" %}" /></button>
-                    
+                {% if status.is_done%}
+                    <div class="col-md-2">                  
+                        <button type="button" class="btn btn-success">{% load static %}<img src="{% static "mission/media/check.svg" %}" /></button>
+                    </div> 
+                    <div class="col-md-4">
+                        <p class="article-content" style="color:navy">{{ status.remarks }}</p>
+                    </div>  
+                {% else %}
+                    <div class="col-md-2">                 
+                        <button type="button" class="btn btn-secondary">{% load static %}<img src="{% static "mission/media/dash.svg" %}" /></button>
+                    </div> 
                 {% endif %}
                 
             {% endif %}
             
-            
-            </div>
+          </div>
             
         {% endfor %}
+        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;margin-left: 80pt;">Download</a>
     </div>
 </div>
 

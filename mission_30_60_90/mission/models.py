@@ -1,12 +1,13 @@
 from django.db import models
-from datetime import date, datetime
+from datetime import date
 from django.contrib.auth.models import User
 from django.urls import reverse
+from . import validate
 
 class Missions(models.Model):
 
     mission_name = models.CharField(max_length=50)
-    no_of_days = models.IntegerField()
+    no_of_days = models.IntegerField(validators=[validate.validate_days])
     start_date = models.DateField(default=date.today)
     aspirant = models.ForeignKey(User, on_delete=models.CASCADE)
 
