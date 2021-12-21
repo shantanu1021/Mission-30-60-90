@@ -3,6 +3,7 @@ from django.db.models.base import Model
 from django.shortcuts import get_list_or_404, get_object_or_404, render,redirect
 from django.views.generic import CreateView, ListView
 from django.contrib import messages
+from django.views.generic.edit import DeleteView
 from .models import Missions,Status
 from datetime import date
 from django.contrib.auth.models import User
@@ -33,7 +34,16 @@ class MissionListView(LoginRequiredMixin,ListView):
         user = get_object_or_404(User,username=self.kwargs.get('username'))
         return Missions.objects.filter(aspirant=user).order_by('-start_date')      
 
+class MissionDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = Missions
+    success_url ='/'
 
+    def test_func(self):
+        mission = self.get_object()
+        if self.request.user == mission.aspirant:
+            return True
+        return False
+            
 @login_required
 def missiontoday(request,**kwargs):
     
@@ -78,4 +88,25 @@ def statuslist(request,**kwargs):
         'mission_name':mission.mission_name
     }
     
-    return render(request,'mission/status_list.html',context)    
+    return render(request,'mission/status_list.html',context)
+
+@login_required
+def todays_tasks(request,**kwargs):
+
+    user = get_object_or_404(User,username=kwargs.get('username'))
+    missions=Missions.objects.filter(aspirant=user)
+    mission_days={}
+    for mission in missions:
+        dayno = (date.today()-mission.start_date).days
+        dayno+=1
+        if dayno>mission.no_of_days:
+            pass
+        else:
+            mission_days[mission.mission_name]=dayno
+    
+    
+    context={
+        'mission_days':mission_days
+    }
+    
+    return render(request,'mission/todays_tasks.html',context)        

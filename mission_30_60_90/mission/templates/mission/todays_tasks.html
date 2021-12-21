@@ -1,0 +1,18 @@
+{% extends "mission/base.html" %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="mb-3">Today's Tasks :</h1>
+      {% for mission,dayno in mission_days.items %}
+      <article class="media content-section">
+        <div class="media-body">
+          
+          <h2>day {{ dayno }} - <a href = "{% url 'mission-today' mission %}">{{ mission }}</a></h2>
+          
+          
+        </div>
+      </article>
+    {% endfor %}
+    </div>
+  </div>
+{% endblock content %} 

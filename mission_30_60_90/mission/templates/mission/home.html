@@ -3,11 +3,18 @@
     {% if user.is_authenticated %}
         <div class="row">
             <div class="col">
-                <a href="{% url 'mission-create' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;margin-left: 80pt;"  >New Mission</a>
+                <a href="{% url 'mission-create' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;margin-left: 130pt;"  >New Mission</a>
             </div>
             <div class="col">
-                <a href="{% url 'user-missions' user.username %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;margin-left: 80pt;" >Your missions</a>
+                <a href="{% url 'user-missions' user.username %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="margin-top: 25pt;margin-left: 85pt;" >Your missions</a>
             </div>
+            
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'todays-tasks' user.username %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="margin-top: 30pt;margin-left: 320pt;" >Today's Tasks</a>
+            </div>
+
         </div>
         <br>
         <br>

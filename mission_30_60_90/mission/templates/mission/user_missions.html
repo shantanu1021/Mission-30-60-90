@@ -8,9 +8,11 @@
               <div class="media-body">
                 <div class="article-metadata">
                   <small class="text-muted">{{ mission.start_date|date:"F d,Y" }}</small>
+                  
                 </div>
                 <h2><a href = "{% url 'mission-today' mission.mission_name %}">{{ mission.mission_name }}</a></h2>
-                <p class="article-content">{{ mission.no_of_days }} days</p>
+                <p class="article-content"><strong>{{ mission.no_of_days }} days</strong></p>
+                <a class="btn btn-danger" style="margin-right: 2pt;" href="{% url 'mission-delete' mission.id %}">Delete</a>
               </div>
             </article>
         {% endfor %}
